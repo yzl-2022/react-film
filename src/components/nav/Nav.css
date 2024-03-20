@@ -1,0 +1,58 @@
+/*top-menu*/
+nav {
+    height: 52px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    line-height: 24px;
+}
+
+nav li a {
+    margin-left: 1rem;
+    font-size: 14px;
+    color: black;
+}
+nav li:last-child {
+    margin-left: 1rem;
+    border-left: 1px solid #999;
+}
+
+nav li img {
+    vertical-align: top;  /*why 'middle' does not aligne in the center?*/
+    margin-right: 4px;
+}
+
+nav ul li form {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li form input {
+    margin-left: 1rem;
+}
+
+.nav-btn{
+    background-color: var(--green);
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    padding: 4px;
+    border: none;
+    appearance: none;
+}
+
+button.nav-btn {
+    margin-left: .5rem;
+}
+
+/*responsive*/
+@media screen and (max-width: 360px) {
+    nav ul li form {
+        flex-wrap: wrap;
+    }
+}

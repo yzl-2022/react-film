@@ -1,0 +1,51 @@
+/*filter at the top*/
+.filter {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+}
+
+.filter label {
+    padding: 0.5rem;
+    background-color: var(--gold);
+    font-size: var(--h6);
+    text-align: center;
+    border-radius: 10px;
+    margin: 0.5rem 3px;
+}
+
+.filter input {
+    margin-right: 5px;
+}
+
+.filter input[type=number] {
+    width: 40px;
+}
+
+/*list of films*/
+.content {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.content li {
+    width: 290px;
+    height: 646px;
+    background-color: var(--green);
+    /*transition*/
+    transition: all 0.9s;
+    /*promo-tag*/
+    position: relative;
+    margin: 1rem 0;
+}
+
+/*transition*/
+.content li:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 10px 4px rgba(0, 0, 0, 0.42);
+    transition-duration: 100ms;
+	transition-delay: 10ms;
+}

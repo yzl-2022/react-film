@@ -1,0 +1,58 @@
+/*pic*/
+.pic {
+    width: 290px;
+    height: 400px;
+    background-color: black;
+    /*push <img> to center*/
+    display: flex;
+    justify-content: center;
+}
+
+.pic > img {
+    max-width: 290px;
+    max-height: 400px;
+    width: auto;  /*why the inverse (width: 100%; height: auto) does not work?*/
+    height: 100%;
+    vertical-align: middle;  /*It seems not to work, why?  --> flex parent box*/
+}
+
+/*txt*/
+.txt {
+    text-align: left;
+    padding: 0 2rem;
+    height: 246px; /*I have no idea where this height comes from, just measured it from the browser*/
+}
+
+.txt h3 {
+    height: 50px; /*this height should be enough to cover 2 lines*/
+    line-height: 25px;
+    overflow: hidden;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: var(--h3);
+    font-weight: 400;
+    color: var(--gold);
+}
+
+.txt h3:hover {
+    color: var(--red);
+}
+
+.txt p {
+    font-size: var(--h6);
+    height: 20px; /*this height should be enough to cover 2 lines*/
+    line-height: 20px;
+    overflow: hidden;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.txt p.description {
+    height: 100px;
+}
+
+.txt p span {
+    color: black;
+    font-weight: 700;
+    font-size: var(--h6);
+}

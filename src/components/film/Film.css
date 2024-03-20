@@ -1,0 +1,71 @@
+/*one film*/
+.film {
+    display: flex;
+    margin: 2rem auto;
+}
+
+.film img {
+    vertical-align: center; 
+}
+
+/*overwrite from Card-film.css*/
+.pic {
+    flex: 30%;
+}
+
+.txt {
+    flex: 70%;
+    height: 100%;
+}
+
+/*try a simple form*/
+.txt > form > label {
+    margin-right: 1rem;
+}
+
+/*responsive*/
+@media screen and (max-width: 808px) {
+    .film {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/*list of comments*/
+.comment ul {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: 2rem auto;
+}
+
+.comment li {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.comment li span {
+    display: block;
+    margin: 0 1rem;
+    text-align: center;
+    line-height: 64px; /* why it won't be in the center?*/
+    align-self: center;
+}
+
+.comment li p {
+    align-self: center;
+}
+
+.comment li form {
+    display: flex;
+    justify-content: center;
+}
+
+.comment li form textarea{
+    width: 400px;
+    height: 64px; /* why the height is automatically 64px?*/
+    margin-right: 1rem;
+}
