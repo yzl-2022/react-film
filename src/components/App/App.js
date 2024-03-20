@@ -64,7 +64,7 @@ function App() {
 
     <LoginContext.Provider value={login}>
 
-      <BrowserRouter basename='/my-app/'>
+      <BrowserRouter >
         <Nav handleLogin={handleLogin} handleLogout={handleLogout} />
         <Header />
         <Routes>
