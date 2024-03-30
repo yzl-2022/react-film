@@ -26,7 +26,7 @@ function App() {
 
   const urlLogin = 'https://film-j3by.onrender.com/api/utilisateurs/connexion'
 
-  //jwtDecode
+  //copied from class notes 16
   function jetonValide() {
     try {
       // On récupère le token du local storage
@@ -74,9 +74,13 @@ function App() {
       if (res.status === 200){
         //Mettre le token dans localStorage
         localStorage.setItem("api-film-token", jsonRes);
-        //update login 
-        setLogin({isLogin: true, user: jwtDecode(jsonRes).username})
-        e.target.reset()
+        if(jetonValide()){
+          //update login 
+          setLogin({isLogin: true, user: jwtDecode(jsonRes).username})
+          e.target.reset()
+        }else{
+          setLogin({isLogin: false, user: ''})
+        }
         
       }else{
         setLogin({isLogin: false, user: ''})
@@ -87,6 +91,7 @@ function App() {
   }
 
   function handleLogout(){
+    localStorage.removeItem("api-film-token")
     if (login.isLogin) setLogin({isLogin: false, user: ''})
   }
 
@@ -98,10 +103,14 @@ function App() {
         <Nav handleLogin={handleLogin} handleLogout={handleLogout} />
         <Header />
         <Routes>
-            <Route path='/' element={<Accueil />} />
-            <Route path="/films" element={<List />} />
-            <Route path="/film/:id" element={<Film />} />
-            <Route path="/admin" element={<Admin />} />
+          <Route path="/" >
+            <Route index element={<Accueil />} />
+            <Route path="films" element={<List />} />
+            <Route path="film/:id" element={<Film />} />
+          </Route>
+          <Route path="/admin" >
+            <Route index element={<Admin />} />
+          </Route>
             <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
