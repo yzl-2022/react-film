@@ -99,10 +99,10 @@ function Admin() {
   return (
     <main className="wrapper admin">
       {!login.isLogin && <h1>Vous n'êtes pas connecté</h1>}
-      {true && (
+      {login.isLogin && (
         <article>
           <section>
-            <form className='one' onChange={handleChange} onSubmit={handleSubmit}>
+            <form className='one' onSubmit={handleSubmit}>
               <h2>Ajouter un nouveau film</h2>
               <label htmlFor="titre">Titre: <input name="titre" id="titre" type="text" placeholder="titre du film" required/></label>
               <label htmlFor="genres">Genres: 
