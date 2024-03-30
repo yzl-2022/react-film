@@ -1,3 +1,54 @@
 .admin {
     margin: 2rem auto;
 }
+
+.admin article {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.admin article section {
+    margin: 1rem;
+}
+
+.admin article section li button {
+    display: inline-block;
+    padding: 4px;
+    margin: 0.5rem 1rem;
+    background-color: var(--green);
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    appearance: none;
+}
+
+.admin article section li button:hover {
+    color: var(--gold);
+}
+
+/*responsive*/
+@media screen and (max-width: 880px) {
+    .admin article {
+        flex-wrap: wrap;
+    }
+}
+
+form.one {
+    display: flex;
+    flex-flow: column;
+    max-width: 300px;
+    border: 1px #999 solid;
+    border-radius: 6px;
+    margin-top: 16px;
+    padding: 16px;
+}
+
+form.one label {
+display: block;
+margin: 8px;
+}
+
+select {
+    height: 245px;
+}

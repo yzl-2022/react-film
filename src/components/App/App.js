@@ -1,3 +1,6 @@
+//jwt-decode
+import { jwtDecode } from 'jwt-decode'
+
 import './App.css'
 
 import Header from '../header/Header'
@@ -23,6 +26,25 @@ function App() {
 
   const urlLogin = 'https://film-j3by.onrender.com/api/utilisateurs/connexion'
 
+  //jwtDecode
+  function jetonValide() {
+    try {
+      // On récupère le token du local storage
+      const token = localStorage.getItem("api-film-token");
+      const decoded = jwtDecode(token);
+      // On vérifie si le token est toujours valide
+      if (Date.now() < decoded.exp * 1000) {
+        return true;
+      } else {
+        // Si le token est expiré, on le supprime du local storage
+        localStorage.removeItem("api-film-token");
+        return false;
+      }
+    } catch (error) {
+      return false;
+    }
+   }
+
   //==========================
   // eventListeners to be used in nav>form
   //==========================
@@ -39,20 +61,28 @@ function App() {
     }
 
     //2-verify user in API-Film
-    const oOptions = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(loginForm)
-    }
-
-    const res = await fetch(urlLogin, oOptions)
-    const jsonRes = await res.json()
-
-    if (jsonRes.username){ //only if connected successfully
-      setLogin({isLogin: true, user: jsonRes.username})
-      e.target.reset()
-    }else{
-      setLogin({isLogin: false, user: ''})
+    try{
+      const oOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(loginForm)
+      }
+  
+      const res = await fetch(urlLogin, oOptions)
+      const jsonRes = await res.json() //jwtDecode(jsonRes) gives {id: 1, username: '123@123.com', iat: 1711812525, exp: 1714404525}
+  
+      if (res.status === 200){
+        //Mettre le token dans localStorage
+        localStorage.setItem("api-film-token", jsonRes);
+        //update login 
+        setLogin({isLogin: true, user: jwtDecode(jsonRes).username})
+        e.target.reset()
+        
+      }else{
+        setLogin({isLogin: false, user: ''})
+      }
+    }catch(err){
+      console.log(err)
     }
   }
 
@@ -68,12 +98,10 @@ function App() {
         <Nav handleLogin={handleLogin} handleLogout={handleLogout} />
         <Header />
         <Routes>
-            <Route path="/" >
-              <Route index element={<Accueil />} />
-              <Route path="/films" element={<List />} />
-              <Route path="/film/:id" element={<Film />} />
-              <Route path="/admin" element={<Admin />} />
-            </Route>
+            <Route path='/' element={<Accueil />} />
+            <Route path="/films" element={<List />} />
+            <Route path="/film/:id" element={<Film />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
